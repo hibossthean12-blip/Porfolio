@@ -11,8 +11,17 @@
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- styles.css hides [data-reveal] until main.js reveals it. Without this,
+       a browser with scripting disabled (or a main.js that never runs) would
+       render a completely blank page. -->
+  <noscript>
+    <style>[data-reveal]{opacity:1!important;transform:none!important}</style>
+  </noscript>
 </head>
 
 <body>

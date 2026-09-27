@@ -6,7 +6,11 @@
 (function () {
   "use strict";
 
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* Guarded: an unguarded matchMedia call throws on browsers that lack it,
+     which would abort this whole IIFE before init() runs. Because the
+     stylesheet hides [data-reveal] by default, that means a blank page. */
+  var reduceMotion = typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ----------------------------------------------------------------------
      1. Sticky header shadow on scroll
@@ -72,6 +76,13 @@
     );
   }
 
+  /* Reveal everything immediately. Used as the fallback whenever the observer
+     cannot be relied on, so content is never left stuck at opacity 0. */
+  function revealAll() {
+    Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"))
+      .forEach(function (el) { el.classList.add("is-visible"); });
+  }
+
   /* ----------------------------------------------------------------------
      3. Scroll reveal
      Staggers children of a [data-reveal-group] by `--d` automatically.
@@ -88,22 +99,27 @@
     });
 
     if (reduceMotion || !("IntersectionObserver" in window)) {
-      targets.forEach(function (el) { el.classList.add("is-visible"); });
+      revealAll();
       return;
     }
 
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.12 }
-    );
+    try {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        },
+        { rootMargin: "0px 0px -12% 0px", threshold: 0.12 }
+      );
 
-    targets.forEach(function (el) { observer.observe(el); });
+      targets.forEach(function (el) { observer.observe(el); });
+    } catch (err) {
+      // Never leave the page blank because an observer could not be built.
+      revealAll();
+    }
   }
 
   /* ----------------------------------------------------------------------
@@ -304,15 +320,27 @@
     });
   }
 
-  /* ---------------------------------------------------------------------- */
+  /* Each feature is isolated. A throw in one must not prevent the others from
+     running - initReveal in particular, because until it runs the stylesheet
+     keeps [data-reveal] at opacity 0, which renders the page blank. */
   function init() {
-    initStickyHeader();
-    initMobileNav();
-    initReveal();
-    initFilter();
-    initCardGlow();
-    initContactForm();
-    initYear();
+    [
+      initStickyHeader,
+      initMobileNav,
+      initReveal,
+      initFilter,
+      initCardGlow,
+      initContactForm,
+      initYear
+    ].forEach(function (feature) {
+      try {
+        feature();
+      } catch (err) {
+        if (window.console && console.error) {
+          console.error("[site] " + feature.name + " failed:", err);
+        }
+      }
+    });
   }
 
   if (document.readyState === "loading") {
