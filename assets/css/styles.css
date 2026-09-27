@@ -657,6 +657,11 @@ p { text-wrap: pretty; }
 
 .photo-frame img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 
+/* The portrait currently supplied is 200x200. Rendering it inside the default
+   400px frame would upscale it 2x and look soft, so the frame is capped close
+   to the source resolution. Raise this to 400px once a larger original exists. */
+.photo-frame:has(img[src$="me.jpg"]) { max-width: 250px; }
+
 .about__name {
   display: flex;
   align-items: center;
@@ -1110,37 +1115,6 @@ a.contact-list__value:hover { color: var(--purple-300); }
   color: var(--purple-300);
   font-size: 0.8rem;
   font-weight: 500;
-}
-
-/* Proficiency meters */
-.meter + .meter { margin-top: 1rem; }
-
-.meter__top {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.45rem;
-  font-size: 0.85rem;
-}
-
-.meter__name { color: var(--text); font-weight: 500; }
-.meter__val { color: var(--text-dim); font-variant-numeric: tabular-nums; }
-
-.meter__bar {
-  height: 6px;
-  border: 1px solid var(--stroke-soft);
-  border-radius: 99px;
-  background: var(--bg-soft);
-  overflow: hidden;
-}
-
-.meter__fill {
-  display: block;
-  height: 100%;
-  width: 0;
-  border-radius: 99px;
-  background: var(--grad-purple);
-  transition: width 1.1s var(--ease);
 }
 
 /* Fact list */

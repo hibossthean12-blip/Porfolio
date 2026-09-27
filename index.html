@@ -147,8 +147,10 @@
           <div class="about__grid">
 
             <div class="photo-frame" data-reveal="left">
-              <!-- Swap assets/images/profile.svg for a real photo of yourself, e.g. <img src="assets/images/me.jpg" ...> -->
-              <img src="assets/images/profile.svg" alt="Portrait of Thin Chitsothean" width="800" height="1000" loading="lazy">
+              <!-- Portrait. The supplied photo is 200x200, so the frame is capped
+                   near that size; see .photo-frame--portrait in styles.css. Swap in a
+                   600px+ original and the cap can come off. -->
+              <img src="assets/images/me.jpg" alt="Portrait of Thin Chitsothean" width="200" height="200" loading="lazy">
             </div>
 
             <div data-reveal="right">

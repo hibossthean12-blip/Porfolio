@@ -13,8 +13,8 @@ Inter sans-serif, subtle scroll-reveal animations, fully mobile responsive.
 | File | Contents |
 | --- | --- |
 | `index.html` | Hero, tagline, About Me + contact details, Connect with Me, footer |
-| `resume.html` | Profile, Experience, Education, Skills, Strengths, At a glance, print-to-PDF |
-| `portfolio.html` | Filterable grid of 6 project cards + call to action |
+| `resume.html` | Profile, CV preview, Selected Projects, Education, Skills, At a glance, print-to-PDF |
+| `portfolio.html` | Filterable grid of 5 project cards + acknowledgement + call to action |
 | `contact.html` | Validated contact form plus direct email / phone / social links |
 
 ```
@@ -30,9 +30,16 @@ thin-chitsothean-cv/
     ├── css/styles.css
     ├── js/main.js
     └── images/
-        ├── hero-phone.svg    ← hero background (person holding a phone)
-        ├── profile.svg       ← About Me profile photo
-        └── favicon.svg
+        ├── hero-phone.svg          ← hero background (placeholder illustration)
+        ├── me.jpg                  ← About Me portrait
+        ├── favicon.svg
+        └── projects/
+            ├── ygtechstore.jpg
+            ├── event-management.jpg
+            ├── library.jpg
+            ├── limkokwing.jpg      ← resume education entry
+            ├── shb.jpg             ← resume education entry
+            └── cv.jpg              ← resume CV preview
 ```
 
 ---
@@ -73,66 +80,51 @@ Then visit <http://localhost:8000>.
 
 ---
 
-## Personalise these first
+## Personalise these
 
-Everything below is a deliberate placeholder. Search and replace.
+### 1. Hero background — still a placeholder
 
-### 1. Social links (used ~20× across the four files)
+`assets/images/hero-phone.svg` is an **illustrated placeholder**, not a photo. To use a real
+image, drop it at `assets/images/hero.jpg` and change the `background` in the `.hero__media`
+rule in `assets/css/styles.css`:
 
-| Current placeholder | Replace with |
-| --- | --- |
-| `github.com/thinchitsothean` | your real GitHub username |
-| `linkedin.com/in/thin-chitsothean` | your real LinkedIn profile URL |
-
-Fastest way to update all occurrences at once:
-
-```bash
-# PowerShell
-(Get-ChildItem *.html) | ForEach-Object {
-  (Get-Content $_ -Raw) -replace 'thinchitsothean', 'YOUR-HANDLE' | Set-Content $_ -NoNewline
-}
+```css
+background: var(--bg-soft) url("../images/hero.jpg") center / cover no-repeat;
 ```
 
-### 2. Photos
+A wide photo (~1920px) works best. The hero already has a dark scrim over the image, so any
+reasonably dark photo will keep the headline readable.
 
-The site ships with **illustrated SVG placeholders** so it looks finished out of the box.
-Swap in real images — keep the same filenames to change nothing else, or edit the `src`:
+### 2. Profile photo
 
-| File | Suggested replacement |
-| --- | --- |
-| `assets/images/hero-phone.svg` | A photo of yourself holding a phone, ~1600×1000 |
-| `assets/images/profile.svg` | A portrait of yourself, ~800×1000 (4:5 portrait) |
+`assets/images/me.jpg` is in place. The current file is only **200×200**, so the frame is
+capped at 250px wide via `.photo-frame:has(img[src$="me.jpg"])` to avoid upscaling it into a
+blurry mess. If you replace it with a 600px-or-larger original, delete that rule to restore
+the full 400px frame.
 
-The hero already has a dark scrim over the image, so any reasonably dark photo will keep
-the headline readable. For the profile photo, replace the `<img>` in the About section of
-`index.html`:
+### 3. Contact form
 
-```html
-<img src="assets/images/me.jpg" alt="Portrait of Thin Chitsothean" loading="lazy">
-```
+See [Connect the contact form](#connect-the-contact-form-formspree) below — this is the one
+thing that still needs manual setup.
 
-### 3. Resume content
+### 4. Limkokwing campus photo
 
-`resume.html` contains **realistic placeholder roles, employers and dates** so the layout
-reads properly. Replace them with your actual history — edit the `.entry` blocks inside
-`.timeline`:
+`assets/images/projects/limkokwing.jpg` is the **Cyberjaya campus in Selangor, Malaysia**,
+but it sits beside the Phnom Penh, Cambodia degree entry in `resume.html`. Swap in a Phnom
+Penh campus photo, or drop the `<img class="entry__thumb">` from that entry to remove the
+implication.
 
-- Experience → three `.entry` blocks (Software Engineer, Intern, Freelance)
-- Education → Limkokwing University BSc, plus a secondary/high-school entry
-- Skills → the `.pill-list` groups and the `.meter` percentages
-- At a glance → the `.fact-list` rows
+### 5. Portfolio categories
 
-### 4. Portfolio projects
+`portfolio.html` has five project cards. If you add or recategorise one:
 
-`portfolio.html` has six project cards. Each one needs:
-
-- `data-category="web|backend|mobile|oss"` — **must exactly match** a `data-filter` value
-  on a filter chip, or the card becomes unreachable
-- Title, description and the `.tag` chips
-- The `href` on the "View project" link (currently points at the placeholder GitHub)
-
-The numbered watermark in `.project__thumb` and its gradient are inline — change
-`background:linear-gradient(...)` per card to recolour the thumbnails.
+- `data-category="web|mobile"` — **must exactly match** a `data-filter` value on a filter
+  chip, or the card becomes unreachable
+- `data-filter-count` in the "Showing N projects" line is the default count for
+  no-JS visitors; keep it in sync
+- Card screenshots live in `assets/images/projects/` and are letterboxed with
+  `object-fit: contain`, so portrait phone screenshots are not cropped. Cards without a
+  screenshot fall back to a gradient plus a large number.
 
 ---
 
@@ -171,7 +163,6 @@ confirmation; after you click the link in that email, messages arrive in Gmail.
 - **Sticky header** — transparent over the hero, then blurred with a purple bottom stroke.
 - **Mobile nav** — hamburger toggle, closes on link click and `Escape`, resets on resize
   above the breakpoint.
-- **Skill meters** — fill on scroll, driven by `data-meter="90"`.
 - **Portfolio filter** — client-side, with live result count, deep-linkable
   (`portfolio.html?filter=mobile`).
 - **Pointer-tracked card glow** — follows the cursor via `--mx` / `--my`.

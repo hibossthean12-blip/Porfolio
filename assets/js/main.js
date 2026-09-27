@@ -107,40 +107,7 @@
   }
 
   /* ----------------------------------------------------------------------
-     4. Skill proficiency meters
-     ---------------------------------------------------------------------- */
-  function initMeters() {
-    var meters = document.querySelectorAll("[data-meter]");
-    if (!meters.length) return;
-
-    function fillAll() {
-      meters.forEach(function (meter) {
-        var value = meter.getAttribute("data-meter") || "0";
-        meter.style.width = value + "%";
-      });
-    }
-
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      fillAll();
-      return;
-    }
-
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.style.width = entry.target.getAttribute("data-meter") + "%";
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.4 }
-    );
-
-    meters.forEach(function (meter) { observer.observe(meter); });
-  }
-
-  /* ----------------------------------------------------------------------
-     5. Portfolio filtering
+     4. Portfolio filtering
      ---------------------------------------------------------------------- */
   function initFilter() {
     var bar = document.querySelector("[data-filter-bar]");
@@ -183,7 +150,7 @@
   }
 
   /* ----------------------------------------------------------------------
-     6. Pointer-tracked glow on cards
+     5. Pointer-tracked glow on cards
      ---------------------------------------------------------------------- */
   function initCardGlow() {
     if (reduceMotion || window.matchMedia("(hover: none)").matches) return;
@@ -202,7 +169,7 @@
   }
 
   /* ----------------------------------------------------------------------
-     7. Contact form
+     6. Contact form
      Validates inline, then posts to a real endpoint (Formspree) via fetch so
      the visitor gets an inline success state instead of a page navigation.
      If no endpoint is configured it falls back to the visitor's mail client.
@@ -369,7 +336,7 @@
   }
 
   /* ----------------------------------------------------------------------
-     8. Footer year
+     7. Footer year
      ---------------------------------------------------------------------- */
   function initYear() {
     var year = String(new Date().getFullYear());
@@ -383,7 +350,6 @@
     initStickyHeader();
     initMobileNav();
     initReveal();
-    initMeters();
     initFilter();
     initCardGlow();
     initContactForm();
