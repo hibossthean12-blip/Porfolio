@@ -1,0 +1,17 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Your real photos may be large - uncomment if you prefer Git LFS or local-only
+# assets/images/me.jpg
+# assets/images/hero.jpg
+
+# Local tooling
+node_modules/
+.vscode/
+.idea/
+
+# Netlify / Vercel local state
+.netlify/
+.vercel/

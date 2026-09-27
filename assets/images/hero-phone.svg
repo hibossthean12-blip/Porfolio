@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Illustration of a person holding and looking at a smartphone">
+  <title>Person holding a phone</title>
+
+  <defs>
+    <!-- Background wash -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"   stop-color="#14141d"/>
+      <stop offset="0.5" stop-color="#0f0f16"/>
+      <stop offset="1"   stop-color="#1a1030"/>
+    </linearGradient>
+
+    <!-- Purple ambience -->
+    <radialGradient id="glowA" cx="0.72" cy="0.26" r="0.55">
+      <stop offset="0"   stop-color="#8b5cf6" stop-opacity="0.42"/>
+      <stop offset="0.6" stop-color="#7c3aed" stop-opacity="0.12"/>
+      <stop offset="1"   stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glowB" cx="0.18" cy="0.82" r="0.5">
+      <stop offset="0"   stop-color="#6d28d9" stop-opacity="0.28"/>
+      <stop offset="1"   stop-color="#6d28d9" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Figure body -->
+    <linearGradient id="body" x1="0.2" y1="0" x2="0.9" y2="1">
+      <stop offset="0"   stop-color="#4c3a7d"/>
+      <stop offset="0.55" stop-color="#2a2246"/>
+      <stop offset="1"   stop-color="#181428"/>
+    </linearGradient>
+
+    <!-- Skin / hand tone, kept muted so the scene stays dark -->
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6b5a86"/>
+      <stop offset="1" stop-color="#3b2f52"/>
+    </linearGradient>
+
+    <!-- Phone screen glow -->
+    <linearGradient id="screen" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0"   stop-color="#ddd6fe"/>
+      <stop offset="0.45" stop-color="#a78bfa"/>
+      <stop offset="1"   stop-color="#7c3aed"/>
+    </linearGradient>
+
+    <linearGradient id="phoneEdge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"   stop-color="#8b5cf6"/>
+      <stop offset="1"   stop-color="#4c1d95"/>
+    </linearGradient>
+
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="42"/>
+    </filter>
+
+    <filter id="softer" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+
+    <filter id="screenBloom" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+
+  <!-- Base layers -->
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#glowA)"/>
+  <rect width="1600" height="1000" fill="url(#glowB)"/>
+
+  <!-- Ambient light pools -->
+  <ellipse cx="1160" cy="250" rx="300" ry="250" fill="#8b5cf6" opacity="0.22" filter="url(#soft)"/>
+  <ellipse cx="300"  cy="820" rx="260" ry="200" fill="#6d28d9" opacity="0.18" filter="url(#soft)"/>
+
+  <!-- Soft diagonal light streaks -->
+  <g opacity="0.10" fill="none" stroke="#a78bfa" stroke-width="1.5">
+    <path d="M -50 700 L 1650 300"/>
+    <path d="M -50 760 L 1650 360"/>
+    <path d="M -50 820 L 1650 420"/>
+  </g>
+
+  <!-- Scattered purple particles -->
+  <g fill="#c4b5fd">
+    <circle cx="420"  cy="210" r="3"   opacity="0.55"/>
+    <circle cx="700"  cy="120" r="2"   opacity="0.40"/>
+    <circle cx="980"  cy="330" r="2.5" opacity="0.45"/>
+    <circle cx="1330" cy="180" r="2"   opacity="0.35"/>
+    <circle cx="1480" cy="470" r="3"   opacity="0.30"/>
+    <circle cx="820"  cy="620" r="2"   opacity="0.28"/>
+    <circle cx="240"  cy="470" r="2"   opacity="0.30"/>
+  </g>
+
+  <!-- ============ FIGURE: person holding a phone ============ -->
+  <g transform="translate(1090 120)">
+
+    <!-- Screen bloom behind the phone -->
+    <ellipse cx="88" cy="300" rx="150" ry="200" fill="#8b5cf6" opacity="0.40" filter="url(#screenBloom)"/>
+
+    <!-- Torso / shoulders -->
+    <path d="M-170 620
+             C-170 430 -100 330  -20 300
+             C  40 278  110 280  168 306
+             C 250 342  290 440  292 620
+             Z"
+          fill="url(#body)"/>
+
+    <!-- Collar highlight stroke -->
+    <path d="M-30 302 C 20 344  90 348  142 312"
+          fill="none" stroke="#8b5cf6" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Neck -->
+    <path d="M-38 250 h84 v66 c0 26 -84 26 -84 0 Z" fill="url(#skin)"/>
+
+    <!-- Head -->
+    <ellipse cx="6" cy="168" rx="96" ry="108" fill="url(#skin)"/>
+
+    <!-- Hair -->
+    <path d="M-90 158
+             C-90 44  102 44  102 158
+             C 102 132  78 96  6 96
+             C -66 96 -90 132 -90 158 Z"
+          fill="#1d1830"/>
+
+    <!-- Ear -->
+    <ellipse cx="100" cy="176" rx="13" ry="20" fill="#5a4a72"/>
+
+    <!-- Forearm + hand reaching up with the phone -->
+    <path d="M150 470
+             C 196 452  214 400  206 352
+             C 200 312  178 292  152 300
+             C 128 308  120 336  126 372
+             C 132 412  116 434  86 440
+             C 66 444  52 428  56 408
+             C 60 386  42 372  24 380
+             C 2 390 -4 424  10 448
+             C 34 486  92 500 150 470 Z"
+          fill="url(#body)"/>
+
+    <!-- Hand wrapped around the phone (fingers) -->
+    <g fill="url(#skin)">
+      <rect x="118" y="252" width="98" height="26" rx="13"/>
+      <rect x="118" y="288" width="98" height="26" rx="13"/>
+      <rect x="120" y="324" width="86" height="24" rx="12"/>
+    </g>
+
+    <!-- Thumb -->
+    <path d="M126 330 C 104 344 104 380 126 396 C 148 410 170 396 166 372
+             C 162 352 146 322 126 330 Z"
+          fill="url(#skin)"/>
+
+    <!-- The phone (slight tilt) -->
+    <g transform="rotate(-7 168 232)">
+      <rect x="126" y="150" width="86" height="164" rx="18" fill="url(#phoneEdge)"/>
+      <rect x="133" y="157" width="72" height="150" rx="13" fill="url(#screen)"/>
+      <!-- UI blocks on the screen -->
+      <g fill="#0f0f16" opacity="0.30">
+        <rect x="143" y="172" width="42" height="7" rx="3.5"/>
+        <rect x="143" y="189" width="30" height="7" rx="3.5"/>
+        <rect x="143" y="215" width="52" height="42" rx="8"/>
+        <rect x="143" y="266" width="52" height="26" rx="7"/>
+      </g>
+      <!-- Screen sheen -->
+      <path d="M133 157 h72 v150 h-72 Z" fill="#ffffff" opacity="0.10"/>
+    </g>
+
+    <!-- Rim light along the figure's right edge -->
+    <path d="M168 306 C 250 342  290 440  292 620"
+          fill="none" stroke="#a78bfa" stroke-opacity="0.55" stroke-width="4" stroke-linecap="round"/>
+    <path d="M102 158 C 102 190  96 214  88 236"
+          fill="none" stroke="#a78bfa" stroke-opacity="0.4" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Desk edge, grounding the scene -->
+  <rect x="0" y="880" width="1600" height="4" fill="#8b5cf6" opacity="0.16"/>
+  <rect x="0" y="884" width="1600" height="116" fill="#0a0a0f" opacity="0.55"/>
+
+  <!-- Foreground bokeh -->
+  <g fill="#a78bfa" filter="url(#softer)">
+    <circle cx="130"  cy="760" r="26" opacity="0.16"/>
+    <circle cx="1520" cy="820" r="34" opacity="0.12"/>
+    <circle cx="760"  cy="930" r="30" opacity="0.10"/>
+  </g>
+</svg>

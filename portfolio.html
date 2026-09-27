@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio — Thin Chitsothean | Software Engineer</title>
+  <meta name="description" content="Selected projects by Thin Chitsothean, software engineer from Phnom Penh, Cambodia — web apps, APIs, mobile and open-source work.">
+  <meta name="author" content="Thin Chitsothean">
+  <meta name="theme-color" content="#0a0a0f">
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="page">
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header" data-header>
+      <div class="container">
+        <nav class="nav" aria-label="Main navigation">
+          <a class="brand" href="index.html">
+            <span class="brand__mark" aria-hidden="true">TC</span>
+            <span>
+              <span class="brand__name">Thin Chitsothean</span>
+              <span class="brand__role">Software Engineer</span>
+            </span>
+          </a>
+
+          <button class="nav__toggle" type="button"
+                  data-nav-toggle aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+
+          <div class="nav__menu" id="nav-menu" data-nav-menu>
+            <ul class="nav__links">
+              <li><a class="nav__link" href="index.html">Home</a></li>
+              <li><a class="nav__link" href="resume.html">Resume</a></li>
+              <li><a class="nav__link" href="contact.html">Contact</a></li>
+              <li><a class="nav__link" href="portfolio.html" aria-current="page">Portfolio</a></li>
+            </ul>
+            <a class="btn btn--primary btn--sm nav__cta" href="contact.html">Let's Talk</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <!-- ================= PAGE HEADER ================= -->
+      <section class="page-head">
+        <div class="container">
+          <ol class="breadcrumb" data-reveal>
+            <li><a href="index.html">Home</a></li>
+            <li><span aria-current="page">Portfolio</span></li>
+          </ol>
+
+          <h1 class="page-head__title" data-reveal style="--d:80ms">
+            Things I've <span class="grad-text">built</span>
+          </h1>
+
+          <p class="lead" data-reveal style="--d:150ms">
+            A selection of projects from coursework, freelance work and my own time — each one
+            a chance to solve a slightly harder problem than the last.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= PROJECT GRID ================= -->
+      <section class="section section--tight">
+        <div class="container">
+
+          <!-- Filter bar -->
+          <div class="filter-bar" data-filter-bar data-reveal role="group" aria-label="Filter projects by category">
+            <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="chip" type="button" data-filter="web" aria-pressed="false">Web Apps</button>
+            <button class="chip" type="button" data-filter="backend" aria-pressed="false">Backend</button>
+            <button class="chip" type="button" data-filter="mobile" aria-pressed="false">Mobile</button>
+            <button class="chip" type="button" data-filter="oss" aria-pressed="false">Open Source</button>
+          </div>
+
+          <p class="muted" style="margin-bottom:1.5rem;font-size:0.88rem" data-reveal>
+            Showing <strong data-filter-count>6</strong> projects
+          </p>
+
+          <div class="grid grid--3" data-reveal-group>
+
+            <article class="card project" data-category="web">
+              <div class="project__thumb" style="background:linear-gradient(135deg,#6d28d9,#1a1a25)">
+                <span aria-hidden="true">01</span>
+                <span class="project__tag">Web App</span>
+              </div>
+              <div class="project__body">
+                <h3 class="card__title">TaskFlow — Team Project Board</h3>
+                <p class="card__text">
+                  A collaborative kanban board with drag-and-drop cards, real-time updates via
+                  WebSockets, and role-based access control. Built to replace a spreadsheet my
+                  study group was using to track assignments.
+                </p>
+                <div class="project__tags">
+                  <span class="tag">React</span>
+                  <span class="tag">Node.js</span>
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">Socket.io</span>
+                </div>
+                <a class="card__go" href="https://github.com/thinchitsothean" target="_blank" rel="noopener noreferrer">
+                  View project
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17L17 7M9 7h8v8"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="card project" data-category="backend">
+              <div class="project__thumb" style="background:linear-gradient(135deg,#4c1d95,#0f0f16)">
+                <span aria-hidden="true">02</span>
+                <span class="project__tag">Backend</span>
+              </div>
+              <div class="project__body">
+                <h3 class="card__title">Marketplace REST API</h3>
+                <p class="card__text">
+                  A product and order API with JWT authentication, input validation on every
+                  route, pagination and full request logging. Includes a 40-case test suite
+                  covering the happy path and edge cases.
+                </p>
+                <div class="project__tags">
+                  <span class="tag">Express</span>
+                  <span class="tag">MySQL</span>
+                  <span class="tag">JWT</span>
+                  <span class="tag">Jest</span>
+                </div>
+                <a class="card__go" href="https://github.com/thinchitsothean" target="_blank" rel="noopener noreferrer">
+                  View project
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17L17 7M9 7h8v8"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="card project" data-category="web">
+              <div class="project__thumb" style="background:linear-gradient(135deg,#7c3aed,#101018)">
+                <span aria-hidden="true">03</span>
+                <span class="project__tag">Web App</span>
+              </div>
+              <div class="project__body">
+                <h3 class="card__title">Khmer Recipes</h3>
+                <p class="card__text">
+                  A recipe site focused on traditional Cambodian home cooking, with a search and
+                  filter system, ingredient checklists and offline-friendly caching so recipes
+                  are readable without a connection.
+                </p>
+                <div class="project__tags">
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">CSS Grid</span>
+                  <span class="tag">PWA</span>
+                  <span class="tag">Firebase</span>
+                </div>
+                <a class="card__go" href="https://github.com/thinchitsothean" target="_blank" rel="noopener noreferrer">
+                  View project
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17L17 7M9 7h8v8"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="card project" data-category="mobile">
+              <div class="project__thumb" style="background:linear-gradient(135deg,#5b21b6,#14141d)">
+                <span aria-hidden="true">04</span>
+                <span class="project__tag">Mobile</span>
+              </div>
+              <div class="project__body">
+                <h3 class="card__title">Commute Tracker</h3>
+                <p class="card__text">
+                  An Android app for logging daily journeys, with a map view, automatic
+                  category tagging and a monthly summary chart. Taught me a lot about mobile
+                  lifecycle handling and storing data locally.
+                </p>
+                <div class="project__tags">
+                  <span class="tag">Java</span>
+                  <span class="tag">Android</span>
+                  <span class="tag">SQLite</span>
+                </div>
+                <a class="card__go" href="https://github.com/thinchitsothean" target="_blank" rel="noopener noreferrer">
+                  View project
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17L17 7M9 7h8v8"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="card project" data-category="oss">
+              <div class="project__thumb" style="background:linear-gradient(135deg,#8b5cf6,#0f0f16)">
+                <span aria-hidden="true">05</span>
+                <span class="project__tag">Open Source</span>
+              </div>
+              <div class="project__body">
+                <h3 class="card__title">DevUtils CLI</h3>
+                <p class="card__text">
+                  A small command-line toolkit that bundles the utilities I kept rewriting:
+                  formatting timestamps, generating project scaffolding and batching file
+                  renames. Open source and being used by a handful of classmates.
+                </p>
+                <div class="project__tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">CLI</span>
+                  <span class="tag">Git</span>
+                </div>
+                <a class="card__go" href="https://github.com/thinchitsothean" target="_blank" rel="noopener noreferrer">
+                  View project
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17L17 7M9 7h8v8"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="card project" data-category="web">
+              <div class="project__thumb" style="background:linear-gradient(135deg,#3b1d78,#101018)">
+                <span aria-hidden="true">06</span>
+                <span class="project__tag">Web App</span>
+              </div>
+              <div class="project__body">
+                <h3 class="card__title">Freelance Client Portal</h3>
+                <p class="card__text">
+                  A client-facing dashboard for a small agency: invoices, deliverables,
+                  file delivery and a messaging thread. Reduced status-update emails to
+                  almost nothing, which the client was happy about.
+                </p>
+                <div class="project__tags">
+                  <span class="tag">Django</span>
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">Bootstrap</span>
+                  <span class="tag">Docker</span>
+                </div>
+                <a class="card__go" href="https://github.com/thinchitsothean" target="_blank" rel="noopener noreferrer">
+                  View project
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17L17 7M9 7h8v8"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+          </div>
+
+          <p class="empty-note" data-filter-empty hidden style="margin-top:1.5rem">
+            No projects in that category yet — try another filter.
+          </p>
+
+        </div>
+      </section>
+
+      <!-- ================= CTA ================= -->
+      <section class="section section--tight">
+        <div class="container">
+          <div class="panel panel--accent" data-reveal style="text-align:center;padding:clamp(2rem,5vw,3.25rem)">
+            <h2 style="margin-bottom:0.75rem">Like what you see?</h2>
+            <p class="lead" style="margin:0 auto 1.75rem">
+              I'm always happy to walk through any of these in more detail, or talk about
+              building something new together.
+            </p>
+            <div class="btn-row" style="justify-content:center">
+              <a class="btn btn--primary" href="contact.html">
+                Get in touch
+                <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+              </a>
+              <a class="btn btn--ghost" href="resume.html">View resume</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__about">
+            <a class="brand" href="index.html">
+              <span class="brand__mark" aria-hidden="true">TC</span>
+              <span>
+                <span class="brand__name">Thin Chitsothean</span>
+                <span class="brand__role">Software Engineer</span>
+              </span>
+            </a>
+            <p style="margin-top:1.1rem">
+              Software engineer from Phnom Penh, Cambodia. Building clean, useful software
+              and always learning something new along the way.
+            </p>
+            <div class="socials">
+              <a class="social" href="https://github.com/thinchitsothean" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/>
+                </svg>
+              </a>
+              <a class="social" href="https://www.linkedin.com/in/thin-chitsothean" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05a3.74 3.74 0 013.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+                </svg>
+              </a>
+              <a class="social" href="mailto:hibossfact12@gmail.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <nav class="footer__col" aria-label="Footer navigation">
+            <h3>Navigation</h3>
+            <ul class="footer__links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="resume.html">Resume</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="portfolio.html">Portfolio</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer__col">
+            <h3>Contact</h3>
+            <ul class="footer__links">
+              <li><a href="mailto:hibossfact12@gmail.com">hibossfact12@gmail.com</a></li>
+              <li><a href="tel:+85521304123">021 304 123</a></li>
+              <li><a href="https://github.com/thinchitsothean" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/thin-chitsothean" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bar">
+          <p>&copy; <span data-year>2026</span> Thin Chitsothean. All rights reserved.</p>
+          <a class="to-top" href="#main">
+            Back to top
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 19V5m0 0l-6 6m6-6l6 6"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
