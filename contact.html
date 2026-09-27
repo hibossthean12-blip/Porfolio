@@ -93,25 +93,13 @@
                 <span data-form-status-text></span>
               </p>
 
-              <!-- ==============================================================
-                   FORMSPREE SETUP  (one-time, ~2 minutes)
-                   1. Create a free form at https://formspree.io and set
-                      "Send to" = hibossfact12@gmail.com
-                   2. Copy the form ID out of the endpoint it shows you,
-                      e.g. https://formspree.io/f/abcdwxyz  ->  "abcdwxyz"
-                   3. Paste it into BOTH marked spots below.
-                   Until then the form still works, it just posts nowhere.
-                   ============================================================== -->
+              <!-- The form has no backend: it validates in the browser, then opens the
+                   visitor's own mail client with the message pre-filled and addressed
+                   to data-mailto. That means it works on GitHub Pages with no server,
+                   no API key and no third-party service. -->
               <form class="form" novalidate
                     data-contact-form
-                    data-endpoint="https://formspree.io/f/PASTE_FORM_ID_HERE"  <!-- PASTE ID -->
-                    action="https://formspree.io/f/PASTE_FORM_ID_HERE"          <!-- PASTE ID -->
-                    method="POST">
-
-                <!-- Spam honeypot: hidden from people, tempting to bots -->
-                <p style="position:absolute;left:-9999px" aria-hidden="true">
-                  <label>Leave this field empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
-                </p>
+                    data-mailto="hibossfact12@gmail.com">
 
                 <div class="field">
                   <label class="field__label" for="name">Name <span aria-hidden="true">*</span></label>

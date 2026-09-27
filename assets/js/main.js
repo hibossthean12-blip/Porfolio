@@ -170,9 +170,9 @@
 
   /* ----------------------------------------------------------------------
      6. Contact form
-     Validates inline, then posts to a real endpoint (Formspree) via fetch so
-     the visitor gets an inline success state instead of a page navigation.
-     If no endpoint is configured it falls back to the visitor's mail client.
+     Validates inline, then hands the message to the visitor's own mail client
+     with a prefilled subject and body. No backend, so nothing to configure and
+     no third-party service between the visitor and their mail app.
      ---------------------------------------------------------------------- */
   function initContactForm() {
     var form = document.querySelector("[data-contact-form]");
@@ -180,11 +180,6 @@
 
     var status = document.querySelector("[data-form-status]");
     var statusText = document.querySelector("[data-form-status-text]");
-    var submitBtn = form.querySelector('button[type="submit"]');
-    var submitLabel = submitBtn ? submitBtn.innerHTML : "";
-
-    var endpoint = form.getAttribute("data-endpoint") || "";
-    var unconfigured = !endpoint || endpoint.indexOf("PASTE_FORM_ID") !== -1;
     var recipient = form.getAttribute("data-mailto") || "hibossfact12@gmail.com";
 
     // Local part: dot-separated atoms (no leading, trailing or doubled dots).
@@ -260,15 +255,6 @@
       status.dataset.tone = tone || "info";
     }
 
-    function setBusy(busy) {
-      if (!submitBtn) return;
-      submitBtn.disabled = busy;
-      submitBtn.style.opacity = busy ? "0.7" : "";
-      submitBtn.innerHTML = busy
-        ? "Sending…"
-        : submitLabel;
-    }
-
     function resetForm() {
       form.reset();
       FIELDS.forEach(function (field) { setError(field, ""); });
@@ -304,34 +290,7 @@
         return;
       }
 
-      if (unconfigured) {
-        sendViaMailClient();
-        return;
-      }
-
-      setBusy(true);
-      setStatus("Sending your message…");
-
-      fetch(endpoint, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
-      })
-        .then(function (response) {
-          if (!response.ok) throw new Error("HTTP " + response.status);
-          setStatus("Thanks — your message is on its way. I'll reply within a day.", "success");
-          resetForm();
-        })
-        .catch(function () {
-          setStatus(
-            "Something went wrong and the message wasn't sent. Please email " +
-              recipient + " directly and I'll get back to you.",
-            "error"
-          );
-        })
-        .then(function () {
-          setBusy(false);
-        });
+      sendViaMailClient();
     });
   }
 

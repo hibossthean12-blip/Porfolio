@@ -102,10 +102,20 @@ capped at 250px wide via `.photo-frame:has(img[src$="me.jpg"])` to avoid upscali
 blurry mess. If you replace it with a 600px-or-larger original, delete that rule to restore
 the full 400px frame.
 
-### 3. Contact form
+### 3. Contact form — nothing to do
 
-See [Connect the contact form](#connect-the-contact-form-formspree) below — this is the one
-thing that still needs manual setup.
+The form has no backend and needs no configuration. It validates in the browser, then opens
+the visitor's own mail client with the subject and body pre-filled and addressed to the
+address in `data-mailto`. Change the recipient in one place:
+
+```html
+<form class="form" data-contact-form data-mailto="hibossfact12@gmail.com">
+```
+
+The one limitation worth knowing: on some devices and in some webmail setups, tapping a
+`mailto:` link does nothing. That is why the page also shows the plain email address and
+phone number directly beneath the form — a visitor who hits a dead mail client still has a
+way to reach you.
 
 ### 4. Limkokwing campus photo
 
@@ -125,33 +135,6 @@ implication.
 - Card screenshots live in `assets/images/projects/` and are letterboxed with
   `object-fit: contain`, so portrait phone screenshots are not cropped. Cards without a
   screenshot fall back to a gradient plus a large number.
-
----
-
-## Connect the contact form (Formspree)
-
-The form validates in the browser, then posts to Formspree with `fetch` and shows an inline
-success state — the visitor never leaves the page.
-
-**Two-minute setup, once:**
-
-1. Create a free form at <https://formspree.io> and set *Send to* =
-   `hibossfact12@gmail.com`.
-2. Copy the form ID out of the endpoint it gives you.
-   `https://formspree.io/f/abcdwxyz` → the ID is **`abcdwxyz`**.
-3. In `contact.html`, paste it into the two spots marked `<!-- PASTE ID -->`:
-
-   ```html
-   data-endpoint="https://formspree.io/f/abcdwxyz"
-   action="https://formspree.io/f/abcdwxyz"
-   ```
-
-Until the ID is filled in the form still works — it detects the placeholder and falls back
-to opening the visitor's mail client, so nothing is silently swallowed.
-
-The form already includes a `_gotcha` honeypot field, which is what Formspree uses to
-silently drop bot submissions. The first submission usually lands in Formspree's inbox for
-confirmation; after you click the link in that email, messages arrive in Gmail.
 
 ---
 
