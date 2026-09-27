@@ -1590,6 +1590,7 @@ a.contact-list__value:hover { color: var(--purple-300); }
   .site-header,
   .site-footer,
   .resume-actions,
+  .btn-row,
   .page-head,
   .hero,
   .tagline,
