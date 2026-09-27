@@ -32,9 +32,12 @@ thin-chitsothean-cv/
     └── images/
         ├── hero-phone.svg          ← hero background (placeholder illustration)
         ├── me.jpg                  ← About Me portrait
+        ├── brand.jpg               ← logo mark in the header/footer of all four pages
         ├── favicon.svg
         └── projects/
             ├── ygtechstore.jpg
+            ├── rentdora.jpg
+            ├── compyuter.jpg        ← Compyuter card, used on the home page AND portfolio
             ├── event-management.jpg
             ├── library.jpg
             ├── limkokwing.jpg      ← resume education entry
@@ -111,6 +114,23 @@ image pipeline if the framing looks off.
 
 An early 200×200 export needed a frame cap (`.photo-frame:has(img[src$="me.jpg"])`) to avoid
 upscaling. That cap is gone; if you swap in a small image again, reintroduce it.
+
+### 2b. The Compyuter card image
+
+`assets/images/projects/compyuter.jpg` (1000×1000) is referenced by **both** the home page
+Selected work card and the portfolio page Compyuter card, so the two never drift apart. One
+file serves both; there is no second copy.
+
+It renders into `.project__thumb`, a fixed 16:10 box, using `object-fit: contain`. A square
+source therefore shows as a centred square with the card's purple gradient either side. That is
+deliberate — `contain` never crops, so a face can never be cut off — but it does mean roughly
+40% of the card width is gradient. To fill the card instead, crop the source to 16:10 and switch
+`.project__thumb img` to `object-fit: cover`; check the crop visually first, since a top-biased
+crop can clip a head.
+
+Do **not** apply that to the UI screenshots (`ygtechstore`, `rentdora`, `event-management`,
+`library`). They are letterboxed on purpose: a `cover` crop of the 0.55-ratio phone captures
+would show only a top sliver and hide the actual interface.
 
 ### 3. Contact form — nothing to do
 
