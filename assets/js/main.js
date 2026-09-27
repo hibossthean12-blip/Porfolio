@@ -88,8 +88,11 @@
      Staggers children of a [data-reveal-group] by `--d` automatically.
      ---------------------------------------------------------------------- */
   function initReveal() {
-    var targets = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
-
+    // Order matters. Children of a [data-reveal-group] only become reveal
+    // targets here, so `targets` must be collected AFTER this loop. Collecting
+    // first left every grouped element unobserved, so it never received
+    // .is-visible and stayed at opacity 0 permanently - which is how all five
+    // project cards ended up invisible while the counter still read "5".
     document.querySelectorAll("[data-reveal-group]").forEach(function (group) {
       Array.prototype.slice.call(group.children).forEach(function (child, index) {
         if (child.hasAttribute("data-reveal")) return;
@@ -97,6 +100,8 @@
         child.style.setProperty("--d", Math.min(index * 85, 510) + "ms");
       });
     });
+
+    var targets = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
 
     if (reduceMotion || !("IntersectionObserver" in window)) {
       revealAll();
