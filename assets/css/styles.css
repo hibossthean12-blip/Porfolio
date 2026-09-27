@@ -662,11 +662,6 @@ p { text-wrap: pretty; }
 
 .photo-frame img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 
-/* The portrait currently supplied is 200x200. Rendering it inside the default
-   400px frame would upscale it 2x and look soft, so the frame is capped close
-   to the source resolution. Raise this to 400px once a larger original exists. */
-.photo-frame:has(img[src$="me.jpg"]) { max-width: 250px; }
-
 .about__name {
   display: flex;
   align-items: center;

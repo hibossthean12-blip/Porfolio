@@ -97,10 +97,11 @@ reasonably dark photo will keep the headline readable.
 
 ### 2. Profile photo
 
-`assets/images/me.jpg` is in place. The current file is only **200×200**, so the frame is
-capped at 250px wide via `.photo-frame:has(img[src$="me.jpg"])` to avoid upscaling it into a
-blurry mess. If you replace it with a 600px-or-larger original, delete that rule to restore
-the full 400px frame.
+`assets/images/me.jpg` is in place at **1254×1254**. It renders into the 400px-wide frame at
+a 4:5 aspect ratio using `object-fit: cover`, so it downscales with plenty of headroom and
+stays sharp on high-density screens. An earlier 200×200 version needed a frame cap
+(`.photo-frame:has(img[src$="me.jpg"])`) to avoid upscaling; that cap has been removed, so
+if you ever swap in a small image again you'll want to reintroduce it.
 
 ### 3. Contact form — nothing to do
 
