@@ -220,6 +220,16 @@
     var unconfigured = !endpoint || endpoint.indexOf("PASTE_FORM_ID") !== -1;
     var recipient = form.getAttribute("data-mailto") || "hibossfact12@gmail.com";
 
+    // Local part: dot-separated atoms (no leading, trailing or doubled dots).
+    // Domain: labels that start and end alphanumeric, ending in an alphabetic TLD.
+    var EMAIL_RE = new RegExp(
+      "^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+" +
+      "(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*" +
+      "@" +
+      "(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+" +
+      "[A-Za-z]{2,}$"
+    );
+
     var FIELDS = [
       { name: "name",    label: "Name",    message: "Please tell me your name." },
       { name: "email",   label: "Email",   message: "Please enter a valid email address." },
@@ -255,7 +265,7 @@
 
       if (!value) {
         error = field.message;
-      } else if (field.name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+      } else if (field.name === "email" && !EMAIL_RE.test(value)) {
         error = field.message;
       } else if (field.name === "message" && value.length < 10) {
         error = "A little more detail helps — 10 characters or more.";

@@ -23,6 +23,9 @@ thin-chitsothean-cv/
 ├── resume.html
 ├── portfolio.html
 ├── contact.html
+├── .github/workflows/deploy.yml   ← automatic GitHub Pages deploy
+├── .gitattributes
+├── .gitignore
 └── assets/
     ├── css/styles.css
     ├── js/main.js
@@ -34,7 +37,29 @@ thin-chitsothean-cv/
 
 ---
 
-## Run it
+## Publish it (GitHub Pages)
+
+Deploys automatically on every push to `main`.
+
+1. **Create the repo** on GitHub (no README, no `.gitignore` — this folder already has both).
+2. **Point the local repo at it and push:**
+
+   ```bash
+   git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
+   git push -u origin main
+   ```
+
+3. **Turn Pages on:** repo → **Settings** → **Pages** → *Build and deployment* →
+   Source: **GitHub Actions**. (The workflow does the rest.)
+4. Your site appears at `https://YOUR-USERNAME.github.io/YOUR-REPO/` within a minute or two.
+   The workflow run log shows the exact URL.
+
+To use a custom domain, add a `CNAME` file in the repo root containing just the domain
+(e.g. `thin-chitsothean.dev`) and set the same domain under Settings → Pages.
+
+---
+
+## Run it locally
 
 Open `index.html` directly, or serve the folder:
 
@@ -111,31 +136,30 @@ The numbered watermark in `.project__thumb` and its gradient are inline — chan
 
 ---
 
-## Connect the contact form to a real inbox
+## Connect the contact form (Formspree)
 
-By default the form validates, then hands the message to the visitor's own mail client via
-`mailto:`. That works with no backend, but depends on the visitor having mail configured.
+The form validates in the browser, then posts to Formspree with `fetch` and shows an inline
+success state — the visitor never leaves the page.
 
-To receive submissions on a server instead, add a `data-endpoint` attribute to the `<form>`
-in `contact.html` and the script will submit normally:
+**Two-minute setup, once:**
 
-```html
-<form class="form" novalidate
-      data-contact-form
-      data-endpoint="https://formspree.io/f/YOUR_FORM_ID"
-      method="POST">
-```
+1. Create a free form at <https://formspree.io> and set *Send to* =
+   `hibossfact12@gmail.com`.
+2. Copy the form ID out of the endpoint it gives you.
+   `https://formspree.io/f/abcdwxyz` → the ID is **`abcdwxyz`**.
+3. In `contact.html`, paste it into the two spots marked `<!-- PASTE ID -->`:
 
-Remove `data-mailto` at the same time. Any service with a plain HTML form POST endpoint
-works (Formspree, Basin, Web3Forms). For **Netlify Forms** instead, keep the `mailto`
-behaviour out and add the two Netlify attributes to the form tag:
+   ```html
+   data-endpoint="https://formspree.io/f/abcdwxyz"
+   action="https://formspree.io/f/abcdwxyz"
+   ```
 
-```html
-<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-```
+Until the ID is filled in the form still works — it detects the placeholder and falls back
+to opening the visitor's mail client, so nothing is silently swallowed.
 
-The email address the form targets lives in two places: `data-mailto` on the form and
-`action="mailto:..."`.
+The form already includes a `_gotcha` honeypot field, which is what Formspree uses to
+silently drop bot submissions. The first submission usually lands in Formspree's inbox for
+confirmation; after you click the link in that email, messages arrive in Gmail.
 
 ---
 
