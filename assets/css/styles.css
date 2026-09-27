@@ -25,14 +25,19 @@
   /* Text */
   --text:          #ececf1;
   --text-soft:     #a8a8b8;
-  --text-dim:      #74748a;
+  /* Was #74748a, which measured 3.44:1 on --surface-3 and failed WCAG AA for
+     normal text. This clears 4.5:1 on every surface it is used on. */
+  --text-dim:      #888b92;
 
   /* Purple strokes / borders */
   --stroke:        rgba(139, 92, 246, 0.28);
   --stroke-soft:   rgba(139, 92, 246, 0.16);
   --stroke-strong: rgba(139, 92, 246, 0.55);
 
-  --grad-purple:   linear-gradient(135deg, var(--purple-400), var(--purple-600));
+  /* Button fill. The start colour is deliberately not --purple-400: white text on
+     #a78bfa measured 2.72:1. #8a55f1 is the lightest purple in the ramp that keeps
+     white text at 4.5:1 or better across the whole gradient. */
+  --grad-purple:   linear-gradient(135deg, #8a55f1, var(--purple-600));
   --grad-text:     linear-gradient(120deg, #ffffff 10%, var(--purple-300) 55%, var(--purple-500) 95%);
 
   /* Layout */
@@ -135,7 +140,7 @@ a:hover { color: var(--purple-300); }
   border: 2px solid var(--bg-soft);
   border-radius: 99px;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--purple-700); }
+::-webkit-scrollbar-thumb:hover { background: var(--purple-600); }
 
 /* --------------------------------------------------------------------------
    3. Typography
@@ -1566,7 +1571,13 @@ a.contact-list__value:hover { color: var(--purple-300); }
    19. Print — clean CV output
    -------------------------------------------------------------------------- */
 @media print {
-  :root { --bg: #fff; --surface: #fff; --bg-soft: #fff; }
+  :root {
+    --bg: #fff; --surface: #fff; --bg-soft: #fff;
+    /* Redefined here because the dim token is referenced by many selectors
+       (.entry__org, .fact-list__key, .form__note, footer links, placeholders)
+       and the screen value is too light on paper. */
+    --text-dim: #55555f;
+  }
 
   body {
     background: #fff;
@@ -1612,5 +1623,4 @@ a.contact-list__value:hover { color: var(--purple-300); }
   .timeline::before { background: #ddd; }
   .entry::before { background: #fff; border-color: #4c1d95; }
   a { color: #4c1d95; text-decoration: none; }
-  .meter__bar { border-color: #ddd; background: #f0f0f0; }
 }
