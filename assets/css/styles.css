@@ -360,6 +360,16 @@ p { text-wrap: pretty; }
   font-weight: 700;
   letter-spacing: 0.04em;
   transition: border-color var(--t) var(--ease), transform var(--t) var(--ease);
+  /* The mark holds a cropped portrait rather than the "TC" initials. */
+  overflow: hidden;
+  padding: 0;
+}
+
+.brand__mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .brand:hover .brand__mark {

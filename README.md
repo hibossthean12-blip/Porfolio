@@ -95,13 +95,22 @@ background: var(--bg-soft) url("../images/hero.jpg") center / cover no-repeat;
 A wide photo (~1920px) works best. The hero already has a dark scrim over the image, so any
 reasonably dark photo will keep the headline readable.
 
-### 2. Profile photo
+### 2. Profile photo and logo
 
-`assets/images/me.jpg` is in place at **1254×1254**. It renders into the 400px-wide frame at
-a 4:5 aspect ratio using `object-fit: cover`, so it downscales with plenty of headroom and
-stays sharp on high-density screens. An earlier 200×200 version needed a frame cap
-(`.photo-frame:has(img[src$="me.jpg"])`) to avoid upscaling; that cap has been removed, so
-if you ever swap in a small image again you'll want to reintroduce it.
+Two images are derived from one high-resolution portrait:
+
+| File | Size | Used for |
+|---|---|---|
+| `assets/images/me.jpg` | 800×1028 | The About Me frame on the home page |
+| `assets/images/brand.jpg` | 160×160 | The 38px logo in the header and footer of all four pages |
+
+`me.jpg` renders into the 400px-wide frame at a 4:5 aspect ratio using `object-fit: cover`, so
+it downscales cleanly and stays sharp on high-density screens. `brand.jpg` is a top-biased
+square crop, since faces sit high in portrait photos — adjust the `0.18` vertical bias in the
+image pipeline if the framing looks off.
+
+An early 200×200 export needed a frame cap (`.photo-frame:has(img[src$="me.jpg"])`) to avoid
+upscaling. That cap is gone; if you swap in a small image again, reintroduce it.
 
 ### 3. Contact form — nothing to do
 
